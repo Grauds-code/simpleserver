@@ -8,4 +8,6 @@ import org.kristaps.simpleserver.models.UserModel;
 
 public interface ControllerRepository extends JpaRepository<UserModel, Long> {
 
+    boolean existsByEmail(String email);
+
 }

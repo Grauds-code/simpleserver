@@ -1,13 +1,11 @@
 package org.kristaps.simpleserver.interfaces;
 
-import java.util.ArrayList;
-
 import org.kristaps.simpleserver.models.UserModel;
 
 public interface InterfaceControllerService {
 
-    ArrayList<UserModel> getUsers();
+    Long createUser(UserModel userModel);
 
-    UserModel getUser(long id);
+    boolean checkEmailExists(String email);
 
-}
+};

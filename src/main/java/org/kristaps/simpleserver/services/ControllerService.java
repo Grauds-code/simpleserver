@@ -1,7 +1,5 @@
 package org.kristaps.simpleserver.services;
 
-import java.util.ArrayList;
-
 import org.kristaps.simpleserver.interfaces.InterfaceControllerService;
 import org.kristaps.simpleserver.models.UserModel;
 import org.kristaps.simpleserver.repository.ControllerRepository;
@@ -15,12 +13,14 @@ public class ControllerService implements InterfaceControllerService {
     private final ControllerRepository controllerRepository;
 
     @Override
-    public ArrayList<UserModel> getUsers() {
-
-        return (ArrayList<UserModel>) controllerRepository.findAll();
+    public Long createUser(UserModel userModel) {
+        UserModel savedUser = controllerRepository.save(userModel);
+        return savedUser.getId();
     }
 
-    public UserModel getUser(long id) {
-        return controllerRepository.findById(id).orElse(null);
+    @Override
+
+    public boolean checkEmailExists(String email) {
+        return controllerRepository.existsByEmail(email);
     }
 }
