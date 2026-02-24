@@ -10,6 +10,7 @@ import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Data
 @Entity
@@ -17,13 +18,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Table(name = "kids")
 
-public class Kids {
+public class ChildrenModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String childName;
-    private int age;
+    private Integer childAge;
     @ManyToOne(fetch = FetchType.LAZY)
+    @ToString.Exclude
     private UserModel userModel;
 }

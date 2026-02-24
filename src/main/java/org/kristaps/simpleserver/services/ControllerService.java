@@ -14,7 +14,12 @@ public class ControllerService implements InterfaceControllerService {
 
     @Override
     public Long createUser(UserModel userModel) {
-        UserModel savedUser = controllerRepository.save(userModel);
+        if (userModel.getChildren() != null) {
+            userModel.getChildren().forEach(child -> child.setUserModel(userModel));
+        }
+
+        UserModel savedUser = controllerRepository.saveAndFlush(userModel);
+        System.out.println(savedUser);
         return savedUser.getId();
     }
 
